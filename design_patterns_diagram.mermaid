@@ -1,0 +1,124 @@
+graph TB
+subgraph "Complete Design Patterns - 23 GoF Patterns"
+DP[Design Patterns<br/>23 Gang of Four Patterns]
+
+DP --> CP[Creational Patterns<br/>5 Patterns]
+DP --> SP[Structural Patterns<br/>7 Patterns]
+DP --> BP[Behavioral Patterns<br/>11 Patterns]
+
+%% CREATIONAL PATTERNS (5)
+CP --> C1[Singleton<br/>One Instance]
+CP --> C2[Factory Method<br/>Create Objects]
+CP --> C3[Abstract Factory<br/>Family of Objects]
+CP --> C4[Builder<br/>Complex Construction]
+CP --> C5[Prototype<br/>Clone Objects]
+
+%% STRUCTURAL PATTERNS (7)
+SP --> S1[Adapter<br/>Interface Bridge]
+SP --> S2[Bridge<br/>Abstraction-Implementation]
+SP --> S3[Composite<br/>Tree Structure]
+SP --> S4[Decorator<br/>Add Responsibilities]
+SP --> S5[Facade<br/>Unified Interface]
+SP --> S6[Flyweight<br/>Share Objects]
+SP --> S7[Proxy<br/>Placeholder/Control]
+
+%% BEHAVIORAL PATTERNS (11)
+BP --> B1[Chain of Responsibility<br/>Pass Request Chain]
+BP --> B2[Command<br/>Encapsulate Request]
+BP --> B3[Iterator<br/>Sequential Access]
+BP --> B4[Mediator<br/>Central Communication]
+BP --> B5[Memento<br/>Save/Restore State]
+BP --> B6[Observer<br/>Notify Dependents]
+BP --> B7[State<br/>Alter Behavior]
+BP --> B8[Strategy<br/>Algorithm Family]
+BP --> B9[Template Method<br/>Algorithm Skeleton]
+BP --> B10[Visitor<br/>Add Operations]
+BP --> B11[Interpreter<br/>Language Grammar]
+
+%% Examples for Creational
+C1 -.->|Examples| C1E[Database Connection<br/>Logger<br/>Config Manager]
+C2 -.->|Examples| C2E[Payment Factory<br/>Document Factory<br/>Vehicle Factory]
+C3 -.->|Examples| C3E[UI Factory Cross-Platform<br/>Database Factory<br/>Theme Factory]
+C4 -.->|Examples| C4E[Order Builder<br/>User Builder<br/>Query Builder]
+C5 -.->|Examples| C5E[Clone Objects<br/>Document Copy<br/>Game Characters]
+
+%% Examples for Structural
+S1 -.->|Examples| S1E[Payment Gateway<br/>Legacy System<br/>3rd Party API]
+S2 -.->|Examples| S2E[Remote Control<br/>Graphics API<br/>Database Driver]
+S3 -.->|Examples| S3E[File System<br/>Organization Chart<br/>Menu Structure]
+S4 -.->|Examples| S4E[Coffee Toppings<br/>Text Formatting<br/>Stream Wrapping]
+S5 -.->|Examples| S5E[Home Theater<br/>Complex Subsystem<br/>API Simplification]
+S6 -.->|Examples| S6E[String Pool<br/>Character Objects<br/>Cache System]
+S7 -.->|Examples| S7E[@Transactional<br/>Virtual Proxy<br/>Security Proxy]
+
+%% Examples for Behavioral
+B1 -.->|Examples| B1E[Exception Handling<br/>Request Pipeline<br/>Event Bubbling]
+B2 -.->|Examples| B2E[Remote Control<br/>Undo/Redo<br/>Transaction]
+B3 -.->|Examples| B3E[Collections Loop<br/>Menu Navigation<br/>Playlist]
+B4 -.->|Examples| B4E[Chat Room<br/>Air Traffic Control<br/>Event Bus]
+B5 -.->|Examples| B5E[Undo Functionality<br/>Save Game<br/>Text Editor History]
+B6 -.->|Examples| B6E[Event Listeners<br/>MVC<br/>Pub-Sub]
+B7 -.->|Examples| B7E[Order Status<br/>TCP Connection<br/>Media Player]
+B8 -.->|Examples| B8E[Payment Methods<br/>Sorting Algorithms<br/>Compression]
+B9 -.->|Examples| B9E[JdbcTemplate<br/>Game AI<br/>Data Mining]
+B10 -.->|Examples| B10E[Tax Calculator<br/>Report Generator<br/>Compiler]
+B11 -.->|Examples| B11E[SQL Parser<br/>Expression Evaluator<br/>Regex]
+
+%% Spring Boot Usage
+C1 -.Spring.-> C1S[@Service/@Component<br/>Default Bean Scope]
+C2 -.Spring.-> C2S[@Bean Methods<br/>BeanFactory]
+C3 -.Spring.-> C3S[Environment Abstract<br/>Multiple DataSources]
+C4 -.Spring.-> C4S[ResponseEntity.builder<br/>UriComponentsBuilder]
+C5 -.Spring.-> C5S[Bean Scope: prototype<br/>@Scope prototype]
+
+S1 -.Spring.-> S1S[Multiple Implementations<br/>@Qualifier]
+S2 -.Spring.-> S2S[Repository Abstraction<br/>JPA/JDBC]
+S3 -.Spring.-> S3S[Exception Hierarchy<br/>Context Hierarchy]
+S4 -.Spring.-> S4S[BeanPostProcessor<br/>AOP Aspects]
+S5 -.Spring.-> S5S[Spring MVC<br/>RestTemplate]
+S6 -.Spring.-> S6S[String Interning<br/>Bean Caching]
+S7 -.Spring.-> S7S[@Transactional<br/>@Lazy<br/>@Cacheable]
+
+B1 -.Spring.-> B1S[Filter Chain<br/>Exception Handlers]
+B2 -.Spring.-> B2S[JdbcTemplate<br/>ApplicationRunner]
+B3 -.Spring.-> B3S[Collections<br/>Streams API]
+B4 -.Spring.-> B4S[ApplicationEventPublisher<br/>Message Broker]
+B5 -.Spring.-> B5S[Session Management<br/>@SessionScope]
+B6 -.Spring.-> B6S[@EventListener<br/>ApplicationEvent]
+B7 -.Spring.-> B7S[State Machines<br/>Workflow]
+B8 -.Spring.-> B8S[Multiple @Beans<br/>@ConditionalOn]
+B9 -.Spring.-> B9S[JdbcTemplate<br/>AbstractController]
+B10 -.Spring.-> B10S[Element Visitors<br/>AST Visitors]
+B11 -.Spring.-> B11S[SpEL Parser<br/>Query DSL]
+
+%% Styling
+style CP fill:#e1f5ff,stroke:#0066cc,stroke-width:3px
+style SP fill:#fff4e1,stroke:#ff9900,stroke-width:3px
+style BP fill:#ffe1f5,stroke:#cc0066,stroke-width:3px
+
+style C1 fill:#90EE90,stroke:#006400,stroke-width:2px,color:#000
+style C2 fill:#90EE90,stroke:#006400,stroke-width:2px,color:#000
+style C3 fill:#90EE90,stroke:#006400,stroke-width:2px,color:#000
+style C4 fill:#90EE90,stroke:#006400,stroke-width:2px,color:#000
+style C5 fill:#90EE90,stroke:#006400,stroke-width:2px,color:#000
+
+style S1 fill:#FFD700,stroke:#FF8C00,stroke-width:2px,color:#000
+style S2 fill:#FFD700,stroke:#FF8C00,stroke-width:2px,color:#000
+style S3 fill:#FFD700,stroke:#FF8C00,stroke-width:2px,color:#000
+style S4 fill:#FFD700,stroke:#FF8C00,stroke-width:2px,color:#000
+style S5 fill:#FFD700,stroke:#FF8C00,stroke-width:2px,color:#000
+style S6 fill:#FFD700,stroke:#FF8C00,stroke-width:2px,color:#000
+style S7 fill:#FFD700,stroke:#FF8C00,stroke-width:2px,color:#000
+
+style B1 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B2 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B3 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B4 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B5 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B6 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B7 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B8 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B9 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B10 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+style B11 fill:#FFA07A,stroke:#FF4500,stroke-width:2px,color:#000
+end
