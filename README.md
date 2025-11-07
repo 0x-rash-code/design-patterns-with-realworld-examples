@@ -57,8 +57,7 @@ They make your code **flexible, modular, and reusable**.
 
 ### Gang of Four (GoF) Design Patterns
 
-These three categories — **Creational**, **Structural**, and **Behavioral** — were first introduced by the *Gang of Four (GoF)* in their classic book *"Design Patterns: Elements of Reusable Object-Oriented Software"*.
-
+These three categories — **Creational**, **Structural**, and **Behavioral** — were first introduced by the *Gang of Four (GoF)* in their classic book *"Design Patterns: Elements of Reusable Object-Oriented Software"*. 
 They form the **foundation of all object-oriented design patterns**, helping developers write **flexible, reusable, and maintainable** code.
 ---
 

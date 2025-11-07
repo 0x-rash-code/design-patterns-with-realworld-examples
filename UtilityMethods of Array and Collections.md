@@ -127,7 +127,7 @@ public static void main(String[] args) {
 // Output: [Apple, Banana, Mango]
 ```
 
-### 3️⃣ `Arrays.parallelSort()'
+### 3️⃣ `Arrays.parallelSort()` 
 Sorts the array using parallel processing for large arrays(uses multiple threads).
 
 ```java
