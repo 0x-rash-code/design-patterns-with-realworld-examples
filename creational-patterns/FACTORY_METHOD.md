@@ -8,6 +8,104 @@ You don't use `new` directly — instead, you delegate creation to a method (the
 
 ---
 
+## Without Factory Method (Problem Example)
+
+```java
+class Notification {
+    void notifyUser() {}
+}
+
+class SMSNotification extends Notification {
+    void notifyUser() {
+        System.out.println("Sending an SMS notification...");
+    }
+}
+
+class EmailNotification extends Notification {
+    void notifyUser() {
+        System.out.println("Sending an Email notification...");
+    }
+}
+
+public class NotificationService {
+    public static void main(String[] args) {
+        // Direct object creation — tightly coupled
+        Notification n = new SMSNotification();
+        n.notifyUser();
+    }
+}
+```
+
+## Problems of without Factory Method:
+1. **Tight Coupling**: Client code is tightly coupled to specific classes (`SMSNotification`, `EmailNotification`).
+2. **Difficult to Extend**: Adding new notification types requires modifying existing code.
+3. **Violation of Open/Closed Principle**: Code is not closed for modification.
+
+
+## With Factory Method (Problem Example)
+
+Step 1: Define the Product Interface
+
+
+```java
+interface Notification {
+    void notifyUser();
+}
+```
+
+Step 2: Create Concrete Implementations
+
+```java
+class SMSNotification extends Notification {
+    void notifyUser() {
+        System.out.println("Sending an SMS notification...");
+    }
+}
+
+class EmailNotification extends Notification {
+    void notifyUser() {
+        System.out.println("Sending an Email notification...");
+    }
+}
+
+```
+
+Step 3: Create the Factory (with the Factory Method)
+```java
+class NotificationFactory {
+    public static Notification createNotification(String type) {
+        if (type.equalsIgnoreCase("SMS")) {
+            return new SMSNotification();
+        } else if (type.equalsIgnoreCase("EMAIL")) {
+            return new EmailNotification();
+        } else {
+            throw new IllegalArgumentException("Unknown notification type :" + type);
+        }
+    }
+}
+```
+
+Step 4: Use the Factory in Client Code
+
+```java
+public class NotificationService {
+    public static void main(String[] args) {
+        NotificationFactory factory = new NotificationFactory();
+        Notification sms = factory.createNotification("SMS");
+        sms.notifyUser();
+        
+        Notification email = factory.createNotification("EMAIL");
+        email.notifyUser();
+    }
+}
+```
+
+## Problems Solved with Factory Method:
+1. **Loose Coupling**: Client code depends on the `Notification` interface, not concrete classes.
+2. **Easy to Extend**: New notification types can be added without modifying existing code.
+3. **Adheres to Open/Closed Principle**: Code is open for extension but closed for modification.
+
+
 ## Real-World Analogy
 
 Imagine a **Travel Booking System** that can book:
@@ -23,7 +121,7 @@ The factory chooses the right class dynamically.
 
 ---
 
-## 🧩 Conceptual Diagram
+## Conceptual Diagram
 
 ```
 ┌───────────────────────────────┐
@@ -61,7 +159,7 @@ Defines the contract for all third-party providers.
 
 ---
 
-## 🎯 What is Factory Method?
+## What is Factory Method?
 
 The **Factory Method Pattern** defines an interface for creating objects but lets subclasses or factories decide which class to instantiate.
 
@@ -69,7 +167,7 @@ You don't use `new` directly — instead, you delegate creation to a method (the
 
 ---
 
-## 🧠 Real-World Analogy
+## Real-World Analogy
 
 Imagine a **Travel Booking System** that can book:
 - ✈️ Flights
@@ -84,7 +182,7 @@ The factory chooses the right class dynamically.
 
 ---
 
-## 🧩 Conceptual Diagram
+## Conceptual Diagram
 
 ```
 ┌───────────────────────────────┐
@@ -109,7 +207,7 @@ The factory chooses the right class dynamically.
 
 ---
 
-## ⚙️ Spring Boot Context
+##  Spring Boot Context
 
 ### 1️⃣ Common Interface
 Defines the contract for all third-party providers.
@@ -153,7 +251,7 @@ User Request → FlightSearchController
 
 ---
 
-## 🧭 Flow with Multiple Product Types
+## Flow with Multiple Product Types
 
 ```
 ┌──────────────────────────────┐
@@ -197,6 +295,8 @@ ThirdParty ThirdParty ThirdParty
 | **Testability** | Difficult | Easier |
 
 ---
+
+
 
 ## Summary Diagram
 
