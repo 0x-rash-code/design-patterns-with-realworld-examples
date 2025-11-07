@@ -60,13 +60,6 @@ They make your code **flexible, modular, and reusable**.
 These three categories — **Creational**, **Structural**, and **Behavioral** — were first introduced by the *Gang of Four (GoF)* in their classic book *"Design Patterns: Elements of Reusable Object-Oriented Software"*.
 
 They form the **foundation of all object-oriented design patterns**, helping developers write **flexible, reusable, and maintainable** code.
-
-In modern frameworks like **Spring Boot**, these patterns are often applied behind the scenes — for example:
-- `@Bean` and `@Configuration` → **Singleton Pattern**
-- `@Autowired` and Dependency Injection → **Factory / Dependency Inversion Principle**
-- `@Controller`, `@Service`, `@Repository` → **Facade / Layered Architecture**
-
-
 ---
 
 ## Design Principles Behind Patterns (SOLID)
