@@ -146,67 +146,6 @@ The factory chooses the right class dynamically.
 
 ---
 
-## Spring Boot Context
-
-### 1️⃣ Common Interface
-Defines the contract for all third-party providers.
-
-### 2️⃣ Product Interfaces
-- `FlightThirdParty` (extends CommonThirdParty)
-- `HotelThirdParty` # 🏭 Factory Method Design Pattern — Real World Example
-
-**Spring Boot: Flight / Hotel / Bus Booking System**
-
----
-
-## What is Factory Method?
-
-The **Factory Method Pattern** defines an interface for creating objects but lets subclasses or factories decide which class to instantiate.
-
-You don't use `new` directly — instead, you delegate creation to a method (the factory). It provides **flexibility**, **loose coupling**, and **easy extensibility**.
-
----
-
-## Real-World Analogy
-
-Imagine a **Travel Booking System** that can book:
-- ✈️ Flights
-- 🏨 Hotels
-- 🚌 Buses
-
-Multiple partners (TBO, TripJack, MakeMyTrip) support different services. Instead of hardcoding which one to use, the system asks:
-
-> *"Hey factory, give me the correct travel partner for this request."*
-
-The factory chooses the right class dynamically.
-
----
-
-## Conceptual Diagram
-
-```
-┌───────────────────────────────┐
-│        Client Layer           │
-│ (Controller / Service Call)   │
-└───────────────┬───────────────┘
-                │
-                ▼
-┌───────────────────────────────┐
-│        Factory Method         │
-│     getByCode("tbo")          │
-└───────────────┬───────────────┘
-                │
-    ┌───────────┼───────────┐
-    ▼           ▼           ▼
-┌──────────┐ ┌──────────┐ ┌──────────┐
-│ TboFlight│ │ TripJack │ │MakeMyTrip│
-│ThirdParty│ │ThirdParty│ │ThirdParty│
-│ (Flight) │ │(Bus/Hotel)│ │ (Flight) │
-└──────────┘ └──────────┘ └──────────┘
-```
-
----
-
 ##  Spring Boot Context
 
 ### 1️⃣ Common Interface
@@ -296,8 +235,6 @@ ThirdParty ThirdParty ThirdParty
 
 ---
 
-
-
 ## Summary Diagram
 
 ```
@@ -323,14 +260,22 @@ ThirdParty ThirdParty ThirdParty
 ---
 
 ### Advantages:
-- ✅ Loose Coupling
-- ✅ High Scalability
-- ✅ Cleaner, Testable Code
-- ✅ Open/Closed Principle
+- Loose Coupling 
+- High Scalability
+- Cleaner, Testable Code
+- Open/Closed Principle
 
 ---
 
-## ✅ Summary
+### Disadvantages:
+- Increases Code Complexity.
+- More Classes to Manage.
+- Harder to Debug.
+- Requires Understanding of Design Patterns.
+---
+
+
+## Summary
 
 **Pattern Type:** Creational  
 **Factory Method:** `getByCode()`  
