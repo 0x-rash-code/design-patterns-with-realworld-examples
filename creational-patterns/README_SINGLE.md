@@ -5,6 +5,12 @@
 
 The **Singleton Pattern** ensures a class has only **one instance** throughout the application and provides a global point of access to it.
 
+### Structure
+
+1️⃣ `private static` variable → holds the single instance  
+2️⃣ `private` constructor → prevents direct instantiation  
+3️⃣ `public static` method → returns the same instance globally
+
 Real world analogy: 
 
 1. A **president/pm** of a country — there is only one president at a time, and everyone refers to that single instance.
