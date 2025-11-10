@@ -1,4 +1,4 @@
-package com.example.design_patterns.creational;
+package com.example.design_patterns.creational.singleton;
 
 public class SingletonLoggingService {
 
@@ -7,6 +7,9 @@ public class SingletonLoggingService {
 
     // Step 2: Private constructor prevents external instantiation
     private SingletonLoggingService(){
+        if (loggingService != null) {
+            throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
+        }
         System.out.println("Logging Service Initialized");
     }
 
