@@ -41,12 +41,12 @@ It’s often used for:
 
 ## Quick Summary
 
-| Feature | Eager | Lazy | Thread-Safe | Best Practice |
-| -------- | ----- | ---- | ------------ | -------------- |
-| **Performance** | High (pre-created) | Medium | High | ✅ Bill Pugh |
-| **Memory Efficient** | ❌ | ✅ | ✅ | ✅ Bill Pugh |
-| **Serialization Safe** | ❌ | ❌ | ✅ Enum | ✅ Enum |
-| **Ease of Implementation** | ✅ | ✅ | ⚠️ Moderate | ✅ Enum |
+| Feature                    | Eager               | Lazy   | Thread-Safe   | Best Practice |
+|----------------------------|---------------------|--------|---------------| -------------- |
+| **Performance**            | High (pre-created)  | Medium | High          | ✅ Bill Pugh |
+| **Memory Efficient**       | ❌                   | ✅      | ✅             | ✅ Bill Pugh |
+| **Serialization Safe**     | ❌                   | ❌      | ✅ Enum        | ✅ Enum |
+| **Ease of Implementation** | ✅                   | ✅      | ⚠️ Moderate   | ✅ Enum |
 
 ---
 
@@ -59,13 +59,13 @@ It’s often used for:
 
 # 1️⃣ Eager Initialization
 
-## 🧠 Concept
+## Concept
 In **Eager Initialization**, the instance of the Singleton class is created **when the class is loaded** — even if it is **never used** later.  
 This ensures **thread safety**, but can **waste memory** if the instance is heavy and unused.
 
 ---
 
-## 🧱 Code Example
+## Code Example
 ```java
 public class SingletonEager {
 
@@ -385,9 +385,9 @@ Imagine a **Banking Application** where multiple services need database connecti
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Banking Application                       │
+│                    Banking Application                      │
 ├─────────────────────────────────────────────────────────────┤
-│                                                               │
+│                                                             │
 │  ┌──────────────────┐         ┌──────────────────┐          │
 │  │ AccountService   │         │TransactionService│          │
 │  │                  │         │                  │          │
@@ -396,7 +396,7 @@ Imagine a **Banking Application** where multiple services need database connecti
 │  │                  │         │                  │          │
 │  │  • 10 connections│         │  • 10 connections│          │
 │  └──────────────────┘         └──────────────────┘          │
-│                                                               │
+│                                                             │
 │  ┌──────────────────┐         ┌──────────────────┐          │
 │  │  LoanService     │         │  ReportService   │          │
 │  │                  │         │                  │          │
@@ -405,7 +405,7 @@ Imagine a **Banking Application** where multiple services need database connecti
 │  │                  │         │                  │          │
 │  │  • 10 connections│         │  • 10 connections│          │
 │  └──────────────────┘         └──────────────────┘          │
-│                                                               │
+│                                                             │
 │  Total: 40 connections created! ❌ Memory waste!            │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -421,9 +421,9 @@ Imagine a **Banking Application** where multiple services need database connecti
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Banking Application                       │
+│                    Banking Application                      │
 ├─────────────────────────────────────────────────────────────┤
-│                                                               │
+│                                                              │
 │  ┌──────────────────┐         ┌──────────────────┐          │
 │  │ AccountService   │────────▶│                  │          │
 │  └──────────────────┘         │                  │          │
