@@ -229,6 +229,152 @@ public class App {
 > Good for **multi-threaded environments**, but **not optimal** for high-performance use.  
 > For better performance, use **Double-Checked Locking**.
 
+# 4️⃣ Double-Checked Locking(DCL)
+---
+
+## What is Double-Checked Locking?
+
+**Double-Checked Locking (DCL)** is a technique used in Singleton pattern to ensure:
+- **Lazy initialization** (object created only when needed)
+- **Thread safety**
+- **High performance** (lock only once during initialization)
+
+It’s called “double-checked” because the instance is checked twice:
+1️⃣ Before entering the synchronized block  
+2️⃣ After acquiring the lock
+
+---
+
+## Why Use Double-Checked Locking?
+
+Before DCL:
+- We used `synchronized` method — thread-safe but **slow**, since every call locks the method.
+
+After DCL:
+- Synchronization happens **only once** (when creating the instance).
+- Future calls bypass locking, giving **fast performance**.
+
+---
+
+## Java Example — Double-Checked Locking Singleton
+
+```java
+public class SingletonDCL {
+
+    // Step 1: Declare volatile instance
+    private static volatile SingletonDCL instance;
+
+    // Step 2: Private constructor
+    private SingletonDCL() {
+        System.out.println("Instance created!");
+    }
+
+    // Step 3: Provide global access point
+    public static SingletonDCL getInstance() {
+        if (instance == null) { // 1️⃣ First check (no locking)
+            synchronized (SingletonDCL.class) {
+                if (instance == null) { // 2️⃣ Second check (with lock)
+                    instance = new SingletonDCL();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+
+### ✅ Output
+```
+Instance created!
+```
+(Printed only once, even if multiple threads call `getInstance()`)
+
+---
+
+## When to Use
+
+✅ When you want **lazy initialization**  
+✅ When performance is critical (avoid locking each time)  
+✅ When you need **thread safety**
+
+🚫 Avoid if:
+- You don’t need lazy loading → use **Eager Initialization**
+- You prefer cleaner syntax → use **Bill Pugh** or **Enum Singleton**
+
+---
+
+## Real-World Example
+
+### ConfigManager.java
+```java
+public class ConfigManager {
+    private static volatile ConfigManager instance;
+
+    private ConfigManager() {
+        System.out.println("Loading configuration...");
+    }
+
+    public static ConfigManager getInstance() {
+        if (instance == null) {
+            synchronized (ConfigManager.class) {
+                if (instance == null) {
+                    instance = new ConfigManager();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+
+Use this for:
+- Logging
+- Database connection pool
+- Cache manager
+- Configuration loaders
+
+---
+
+## Comparison with Other Singleton Implementations
+
+| Pattern                    | Thread Safe   | Lazy   | Performance   | Simplicity   | Comments                            |
+|----------------------------|---------------|--------|---------------|--------------|-------------------------------------|
+| **Eager Initialization**   | ✅             | ❌      | ⚡             | ✅ Simple     | Wastes memory if unused             |
+| **Synchronized Method**    | ✅             | ✅      | 🐢 Slow       | ✅ Easy       | Locks every time                    |
+| **Double-Checked Locking** | ✅             | ✅      | ⚡ Fast        | ⚠️ Moderate  | Needs `volatile`                    |
+| **Bill Pugh Singleton**    | ✅             | ✅      | ⚡ Fast        | ✅ Clean      | Uses static inner class             |
+| **Enum Singleton**         | ✅             | ✅      | ⚡ Fast        | ✅ Simplest   | Reflection-safe, serialization-safe |
+
+---
+
+## Disadvantages of Double-Checked Locking
+
+- More complex than Bill Pugh or Enum
+- Must use `volatile`
+- Slightly harder to maintain
+- Older JVMs (< Java 5) had issues
+
+---
+
+## Summary
+
+| Feature                 | Status                   |
+|-------------------------|--------------------------|
+| Thread-safe             | Yes                      |
+| Lazy Initialization     | Yes                      |
+| Performance             | Excellent                |
+| Simplicity              | Moderate                 |
+| Recommended Alternative | Bill Pugh or Enum        |
+| Common Use Cases        | Logging, Config, DB Pool |
+
+---
+
+## Quick Tip
+
+If you’re coding in **modern Java (8+):**
+> Prefer **Bill Pugh** or **Enum** for simplicity  
+> Use **Double-Checked Locking** only if you need full control
+
 
 ### Bill Pugh Singleton
 
